@@ -36,10 +36,10 @@ def scrape_imdb(url):
 # example url "https://www.imdb.com/name/nm0000375/" where nm0000375 is the nconst
 
 # Get the nconst from the actors_imdb.csv file
-actors_imdb = pd.read_csv('imdb/actors_imdb.csv')
+actors_imdb = pd.read_csv('./imdb/actors_imdb.csv')
 
 # Get the unique actor names from the actors.csv file
-actors = pd.read_csv('letterboxd/actors.csv')
+actors = pd.read_csv('./letterboxd/actors.csv')
 actors = actors['name'].unique()
 
 # Get 1000 random actors
@@ -60,9 +60,9 @@ for actor in actors:
     bio_soup = scrape_imdb(bio_url)
     
     # Save the HTML content
-    with open(f'imdb/actor_pages/{actor}_page.html', 'w') as file:
+    with open(f'./htmls/{actor}_page.html', 'w') as file:
         file.write(str(soup))
 
-    with open(f'imdb/actor_pages/{actor}_bio.html', 'w') as file:
+    with open(f'./htmls/{actor}_bio.html', 'w') as file:
         file.write(str(bio_soup))
 
