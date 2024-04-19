@@ -53,7 +53,7 @@ fileamount = 0
 
 # Loop through the actors and scrape the IMDB page
 while True:
-    if fileamount >= 2000:
+    if fileamount >= 20000:
         break
     actor = random.choice(actors)
     # check if the actor starred in more than 10 movies
