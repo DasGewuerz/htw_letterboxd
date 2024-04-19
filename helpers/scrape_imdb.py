@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import random
@@ -39,18 +40,33 @@ def scrape_imdb(url):
 actors_imdb = pd.read_csv('./imdb/actors_imdb.csv')
 
 # Get the unique actor names from the actors.csv file
-actors = pd.read_csv('./letterboxd/actors.csv')
-actors = actors['name'].unique()
+# Get the actor names from the actors.csv file
+actors_df = pd.read_csv('./letterboxd/actors.csv')
 
-# Get 1000 random actors
-actors = random.sample(list(actors), 10)
+# Get the value counts of actor names
+actor_counts = actors_df['name'].value_counts()
+
+# Get the unique actor names
+actors = actors_df['name'].unique()
+
+fileamount = 0
 
 # Loop through the actors and scrape the IMDB page
+while True:
+    if fileamount >= 2000:
+        break
+    actor = random.choice(actors)
+    # check if the actor starred in more than 10 movies
+    if actor_counts[actor] < 10:
+        print(f"Skipping {actor} as they have starred in less than 10 movies")
+        continue
 
-for actor in actors:
     # Get the nconst for the actor
-    nconst = actors_imdb[actors_imdb['primaryName'] == actor]['nconst'].values[0]
-    
+    try:
+        nconst = actors_imdb[actors_imdb['primaryName'] == actor]['nconst'].values[0]
+    except:
+        print(f"Skipping {actor} as nconst not found")
+        continue
     # Construct the URL
     url = f"https://www.imdb.com/name/{nconst}/"
     bio_url = f"https://www.imdb.com/name/{nconst}/bio"
@@ -60,9 +76,11 @@ for actor in actors:
     bio_soup = scrape_imdb(bio_url)
     
     # Save the HTML content
-    with open(f'./htmls/{actor}_page.html', 'w') as file:
+    with open(f'./html/{actor}_{nconst}_page.html', 'w') as file:
         file.write(str(soup))
 
-    with open(f'./htmls/{actor}_bio.html', 'w') as file:
+    with open(f'./html/{actor}_{nconst}_bio.html', 'w') as file:
         file.write(str(bio_soup))
 
+    # count the amount of files
+    fileamount = len(os.listdir('./html'))
