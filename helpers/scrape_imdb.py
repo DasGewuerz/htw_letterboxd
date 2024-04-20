@@ -84,3 +84,4 @@ while True:
 
     # count the amount of files
     fileamount = len(os.listdir('./html'))
+    print(f"Files scraped: {fileamount}")
