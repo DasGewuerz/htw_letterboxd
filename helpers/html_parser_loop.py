@@ -6,6 +6,9 @@ import os
 def add_info(html_content,filename):
 # Parse the HTML with BeautifulSoup
     soup = BeautifulSoup(html_content, 'html.parser')
+    # if the html is "Failed to retrieve the webpage. Status code: 404", skip it
+    if "Failed to retrieve the webpage. Status code: 404" in soup.text:
+        return
 
     # Search for the height
     height_item = soup.findAll('span', {'class': 'ipc-metadata-list-item__list-content-item'})
