@@ -26,7 +26,18 @@ The Letterboxd dataset consists of the following files:
 This project uses Python and requires the following libraries:
 - `pandas` for data manipulation,
 - `numpy` for numerical operations,
-- `matplotlib` and `seabase` for data visualization.
+- `matplotlib`, `plotly`  and `seaborn` for data visualization.
+- `regex` and `warnings` for additional functionality.
+- `sklearn` for machine learning algorithms (only for `actor_ai.pynb`)
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+import seaborn as sns
+import regex as re
+import warnings
+import sklearn
 
 To install these dependencies, run:
 `pip install pandas numpy matplotlib seaborn`
