@@ -27,20 +27,12 @@ This project uses Python and requires the following libraries:
 - `pandas` for data manipulation,
 - `numpy` for numerical operations,
 - `matplotlib`, `plotly`  and `seaborn` for data visualization.
-- `regex` and `warnings` for additional functionality.
+- `regex` for manipulating and filtering strings.
 - `sklearn` for machine learning algorithms (only for `actor_ai.pynb`)
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import plotly.express as px
-import seaborn as sns
-import regex as re
-import warnings
-import sklearn
 
 To install these dependencies, run:
-`pip install pandas numpy matplotlib seaborn`
+`pip install pandas numpy matplotlib plotly seaborn regex`
 or use your prefered method of installation.
 
 ## Additional Helper Scripts
@@ -57,7 +49,7 @@ This project includes several helper scripts located in the `/helpers` subfolder
 2. Ensure you have the required datasets in a directory named `letterboxd/` and your IMDb enriched data in `imdb/`.
 3. Place the helper scripts in the `/helper` subfolder.
 4. Execute the Jupyter notebook `letterboxd.ipynb` to view the analyses and visualizations.
-5. Execute the Jupyter notebook `actor_ai.ipynb` to train the sexist ML Model.
+5. Execute the Jupyter notebook `actor_ai.ipynb` to train the "sexist" ML Model.
 
 
 ## Visualization Samples
