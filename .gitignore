@@ -1,5 +1,5 @@
-letterboxd/
-imdb/
-html/
-posters/
+letterboxd/*
+!letterboxd/Letterboxd.md
+imdb/*
+!imdb/IMDB.md
 .DS_Store
